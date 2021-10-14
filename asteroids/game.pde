@@ -1,5 +1,23 @@
 void doGame() {
   background(BLACK);
+  
+  // teleport button
+  fill(BLACK);
+  stroke(#6BB3B3); strokeWeight(5);
+  square(width * 0.05, height * 0.93, 60);
+  fill(#6BB3B3);
+  textFont(deltaBFont, 40);
+  text("T", width * 0.05, height * 0.93);
+  fill(#FF0000, 120); noStroke();
+  square(width * 0.05, height * 0.93, tCooldown / 10);
+
+  // teleport logic
+  if (keyT && tCooldown == 0) {
+    ship.teleport();
+    tCooldown = 600; // 10 seconds
+  }
+  if (tCooldown > 0)
+    tCooldown--;
     
   // remove old bullets
   for (Bullet b : bullets)
@@ -74,7 +92,7 @@ void doGame() {
     
   titleText.animate(); titleText.render(); titleText.fade(0.95);
   toGameText.animate(); toGameText.render(); toGameText.fade(0.95);
-  
+
   // lives
   for (int i = 0; i < ship.lives; i++) {
     // magic formula, don't ask

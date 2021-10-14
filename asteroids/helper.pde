@@ -2,14 +2,14 @@ class GIF {
   PImage[] images;
   int frames, refresh;
   int gameFrame, imgFrame;
-  GIF(String path, int frames, int refresh) {
+  GIF(String path, String ext, int frames, int refresh) {
     this.images = new PImage[frames];
     this.frames = frames;
     this.refresh = refresh;
     this.gameFrame = this.imgFrame = 0;
     
     for (int i = 0; i < frames; i++)
-      this.images[i] = loadImage(path + nf(i, 4) + ".png");
+      this.images[i] = loadImage(path + nf(i, 4) + ext);
   }
   
   void render(float x, float y, float w, float h) {
@@ -106,11 +106,4 @@ void polygon(PVector p, float rad, int sides, float startAng) {
     vertex(p.x + cos(ang) * rad, p.y + sin(ang) * rad);
   }
   endShape();
-}
-
-// rotation formula
-PVector rotated(float x, float y, float mx, float my, float ang) {
-  float nx = cos(ang) * (x - mx) - sin(ang) * (y - my) + mx;
-  float ny = sin(ang) * (x - mx) + cos(ang) * (y - my) + my;
-  return new PVector(nx, ny);
 }

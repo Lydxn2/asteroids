@@ -54,12 +54,20 @@ class Ship extends GameObject {
       
     // add friction
     this.vel.mult(0.985);
-    
-    /*PVector p0 = rotated(this.loc.x - this.rad, this.loc.y - this.rad * .7, this.loc.x, this.loc.y, this.dir.heading());
-    PVector p1 = rotated(this.loc.x - this.rad, this.loc.y + this.rad * .7, this.loc.x, this.loc.y, this.dir.heading());
-    PVector p2 = rotated(this.loc.x + this.rad, this.loc.y, this.loc.x, this.loc.y, this.dir.heading());
-    circle(p0.x, p0.y, 10);
-    circle(p1.x, p1.y, 10);
-    circle(p2.x, p2.y, 10);*/
+  }
+  
+  void teleport() {
+    while (true) {
+      this.loc.x = random(this.rad, width - this.rad);
+      this.loc.y = random(this.rad, height - this.rad);
+      
+      boolean good = true;
+      for (Asteroid a : asteroids)
+        if (dist(this.loc.x, this.loc.y, a.loc.x, a.loc.y) < 100)
+          { good = false; break; }
+      if (good)
+        break;
+    }
+    this.vel.x = this.vel.y = 0;
   }
 }

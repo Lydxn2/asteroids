@@ -15,6 +15,8 @@ void keyPressed() {
     keyEnter = true;
     freeEnter = true;
   }
+  if (key == 't' || key == 'T')
+    keyT = true;
 }
 
 void keyReleased() {
@@ -28,4 +30,6 @@ void keyReleased() {
     keySpace = false;
   if (keyCode == ENTER)
     keyEnter = false;
+  if (key == 't' || key == 'T')
+    keyT = false;
 }
