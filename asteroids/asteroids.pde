@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 enum Mode {
-  INTRO, GAME, GAMEOVER;
+  INTRO, GAME, PAUSE, GAMEOVER;
 }
 Mode mode;
 
@@ -18,11 +18,11 @@ AnimatedText titleText, toGameText, youLoseText, youWinText, toStartText;
 GIF[] heartGif;
 GIF ufoImg;
 
-boolean keyLeft, keyRight, keyUp, keySpace, keyEnter, keyT;
-boolean freeSpace, freeEnter;
+boolean keyLeft, keyRight, keyUp, keySpace, keyEnter, keyA, keyT, keyP;
+boolean freeSpace, freeEnter, freeP;
 
 Ship ship;
-UFO ufo;
+ArrayList<UFO> ufos;
 ArrayList<Bullet> bullets;
 ArrayList<Asteroid> asteroids;
 ArrayList<Particle> particles;
@@ -42,6 +42,7 @@ void setup() {
   ufoImg = new GIF("data/images/ufo", ".png", 1, 1);
   
   rectMode(CENTER);
+  imageMode(CENTER);
   
   resetGame();
   mode = Mode.INTRO;
@@ -54,6 +55,9 @@ void draw() {
       break;
     case GAME:
       doGame();
+      break;
+    case PAUSE:
+      doPause();
       break;
     case GAMEOVER:
       doGameOver();
@@ -70,8 +74,8 @@ void resetGame() {
 
   ship = new Ship(width / 2, height / 2);
   ship.lives = 3;
-  
-  ufo = null;
+ 
+  ufos = new ArrayList<UFO>();
   bullets = new ArrayList<Bullet>();
   particles = new ArrayList<Particle>();
 

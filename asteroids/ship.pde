@@ -2,6 +2,7 @@ class Ship extends GameObject {
   PVector dir;
   ArrayList<Fire> fire;
   int invincibility;
+  float w, h;
   
   Ship(float x, float y) {
     this.loc = new PVector(x, y);
@@ -9,6 +10,9 @@ class Ship extends GameObject {
     this.dir = new PVector(0, -0.2);
     this.lives = 3;
     this.rad = 15;
+   
+    this.w = this.rad * 2;
+    this.h = this.rad * 1.4;
     
     this.fire = new ArrayList<Fire>();
     this.invincibility = 0;

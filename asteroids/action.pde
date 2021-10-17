@@ -15,8 +15,14 @@ void keyPressed() {
     keyEnter = true;
     freeEnter = true;
   }
+  if (key == 'a' || key == 'A')
+    keyA = true;
   if (key == 't' || key == 'T')
     keyT = true;
+  if ((key == 'p' || key == 'P') && !keyP) {
+    keyP = true;
+    freeP = true;
+  }
 }
 
 void keyReleased() {
@@ -30,6 +36,10 @@ void keyReleased() {
     keySpace = false;
   if (keyCode == ENTER)
     keyEnter = false;
+  if (key == 'a')
+    keyA = false;
   if (key == 't' || key == 'T')
     keyT = false;
+  if (key == 'p' || key == 'P')
+    keyP = false;
 }
